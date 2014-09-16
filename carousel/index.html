@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>slider</title>
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+
+    <div id="container">
+
+        <div id="slides-container">
+            <div class="slide">
+                <img src="img/land01.jpg" alt="">
+            </div>
+            <div class="slide">
+                <img src="img/land02.jpg" alt="">
+            </div>
+            <div class="slide">
+                <img src="img/land03.jpg" alt="">
+            </div>
+            <div class="slide">
+                <img src="img/land04.jpg" alt="">
+            </div>
+        </div>
+
+        <button id="previous" class="button">&lt;</button>
+        <button id="next" class="button">&gt;</button>
+
+    </div>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+    <script>
+    // REFACTOR FOR RE-USABILITY!!!
+    // https://code.tutsplus.com/courses/30-days-to-learn-jquery/lessons/prototypal-inheritance-and-refactoring-the-slider
+    $(document).ready(function() {
+        
+        var $slidesLength = $('.slide').length,
+            $slideWidth = $('.slide').width(),
+            $slidesWidth = $('.slide').width() * $slidesLength,
+            $slidesContainer = $('#slides-container'),
+            current = 0,
+            timer;
+
+        function slideLeft () {
+            current += 1;
+            var coords = -($slideWidth * current);
+            
+            if (current === $slidesLength) {
+                current = 0;
+                coords = 0;
+            }
+
+            $slidesContainer.animate({'margin-left': coords}, 400);
+        }
+
+        function slideRigth () {
+            if (current <= 0) {
+                current = $slidesLength;
+            }
+
+            current -= 1;
+            var coords = -($slideWidth * current);
+
+            $slidesContainer.animate({'margin-left': coords}, 400);
+        }
+
+        $('#next').on('click', function() {
+            slideLeft();
+        });
+
+        $('#previous').on('click', function() {
+            slideRigth();
+        });
+        
+        function startSlider () {
+            timer = setInterval(function() {
+                slideLeft();
+            }, 4000);
+        }
+        
+        startSlider();
+
+        $('#container').on('mouseover', function() {
+            clearInterval(timer);
+        }).on('mouseout', function() {
+            startSlider();
+        });
+    });
+
+    </script>
+    </body>
+</html>

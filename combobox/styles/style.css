@@ -1,0 +1,64 @@
+.menu-items-container {
+	width: 300px;
+}
+
+.menu-items-container .selected {
+	display: block;
+	border: 1px solid black;
+	padding: 5px;
+}
+
+.menu-items-container .selected:hover {
+	cursor: pointer;
+}
+
+.menu-items-container .selected .person-age,
+.menu-items-container .selected img {
+	display: none;
+}
+
+.menu-items-container .selected .person-name {
+	margin: 0;
+}
+
+.menu-items-container .person-item {
+	display: none;
+	border: 1px solid black;
+}
+
+.menu-items-container .person-item:hover {
+	background: #eee;
+	cursor: pointer;
+}
+
+.menu-items-container .person-item img {
+	float: left;
+	margin-right: 10px;
+}
+
+.menu-items-container .person-item .person-detail {
+	float: left;
+}
+
+.menu-items-container .person-item,
+.menu-items-container .selected {
+	margin-bottom: 3px;
+}
+
+/* clearfix */
+.clearfix:after {
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+}
+ 
+html[xmlns] .clearfix {
+    display: block;
+}
+ 
+* html .clearfix {
+    height: 1%;
+}
