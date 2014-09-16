@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Test page</title>
+        <style>
+
+        </style>
+    </head>
+    <body>
+    <!-- By given an array of students, generate a table that 
+    represents these students -->
+
+    
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+    <script>
+
+    $(document).ready(function() {
+        
+        var students = [{
+                            firstName: 'Peter',
+                            lastName: 'Ivanov',
+                            grade: 3
+                        },{
+                            firstName: 'Milena',
+                            lastName: 'Grigorova',
+                            grade: 6
+                        },{
+                            firstName: 'Gergana',
+                            lastName: 'Borisova',
+                            grade: 12
+                        },{
+                            firstName: 'Boyko',
+                            lastName: 'Petrov',
+                            grade: 7
+                        }];
+
+
+        function generateTable (content) {
+            var $table = $('<table></table>');
+
+            $table.prop('border', 1);
+            $table.append('<th>First name</th><th>Last name</th><th>Grade</th>');
+
+            for (var i = 0; i < content.length; i++) {
+                $table.append('<tr><td>' + content[i].firstName + '</td><td>' + content[i].lastName + '</td><td>' + content[i].grade + '</td></tr>')
+            }
+
+            $('body').append($table);
+        }
+
+        generateTable(students);
+        
+
+
+    });
+
+    </script>
+    </body>
+</html>

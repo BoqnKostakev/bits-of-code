@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Test page</title>
+        <style>
+            #container { 
+                border: 1px solid black;
+                margin: 20px auto;
+                position: relative;
+            }
+        </style>
+    </head>
+    <body>
+    
+    <div id="container" style="width: 800px; height: 500px">
+        
+    </div>
+    
+    <script>
+           
+        window.onload = function() {
+
+            function randomInt(min,max,unit) {
+                var number = Math.floor(Math.random() * (max - min) + min);
+
+                return number + unit;
+            }
+
+
+            function randomRgbColor () {
+                var r = randomInt(0, 255, ''),
+                    g = randomInt(0, 255, ''),
+                    b = randomInt(0, 255, '');
+
+                return 'rgb('+ r +', '+ g +', ' + b +')';
+            }
+
+            
+            function createDivs (numberDivs) {
+               (isNaN(numberDivs))? numberDivs = 0 : numberDivs;
+
+                var fragment = document.createDocumentFragment(),
+                    container = document.getElementById('container');
+                
+                for (var i = 0; i < numberDivs; i++) {
+                    var div = document.createElement('div');
+
+                    div.style.width = '30px';
+                    div.style.height = '30px';
+                    div.style.position = 'absolute';
+                    div.style.borderRadius = '10px';
+                    div.style.background = randomRgbColor();
+                    div.className = 'circle';
+
+                    fragment.appendChild(div); 
+                }
+
+                container.appendChild(fragment);
+            }
+
+            createDivs(6);
+
+
+            function moveDivs(time) {
+                var circles = document.getElementsByClassName('circle'),
+                    container = document.getElementById('container'),
+                    len = circles.length,
+                    xcenter = parseInt(container.style.width) / 2,
+                    ycenter = parseInt(container.style.height) / 2,
+                    radius = 70;
+
+                    time = time + 0.05; // fuck me i don't know what this time do...
+                
+                for (var i = 0; i < len; i++) {
+                    var x = Math.floor(ycenter + (radius * Math.cos(time + i))); //circles parametric function
+                    var y = Math.floor(xcenter + (radius * Math.sin(time + i))); //circles parametric function
+
+                    circles[i].style.top = x + 'px';
+                    circles[i].style.left = y + 'px';
+                }
+
+                setTimeout(function() {
+                    moveDivs(time);
+                }, 10);
+
+            }
+
+            moveDivs(1);
+
+        };  
+
+            
+            
+            
+
+
+
+
+
+            // ORIGINAL Formula
+            // function moveDiv(t,mDiv) {
+            //     t = t + 0.05; // "time"
+            //     var r = 50, //radius of circle
+            //         xcenter = 200, //x location of circles centre on screen
+            //         ycenter = 200, //y location of circles centre on screen
+            //         x = Math.floor(xcenter + (r * Math.cos(t))), //circles parametric function
+            //         y = Math.floor(ycenter + (r * Math.sin(t))); //circles parametric function
+            //     mDiv.style.top = x + "px"; //set divs new coordinates
+            //     mDiv.style.left = y + "px"; //set divs new coordinates
+
+            //     setTimeout(function() { //make sure the animation keeps going
+            //         moveDiv(t,mDiv);
+            //     }, 10);
+            // }
+
+            // moveDiv(66, circle);
+
+    </script>  
+    </body>
+</html>

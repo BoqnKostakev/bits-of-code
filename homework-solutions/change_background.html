@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Test page</title>
+
+    </head>
+    <body>
+    
+    <h3>Crеate a function that gets the value of input 
+    type="color" and sets the background of the body 
+    to this value</h3>
+
+    <label for="bg-color">Select background color.</label>
+    <input type="color" id="bg-color" value="#ffffff">
+
+    <script src="test.js"></script>
+    <script>
+
+        var inputColor = document.getElementById('bg-color');
+
+        inputColor.onchange = function() {
+            document.body.style.backgroundColor = inputColor.value;
+        }  
+        
+    
+    </script>  
+    </body>
+</html>

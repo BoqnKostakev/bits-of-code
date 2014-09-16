@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Test page</title>
+    </head>
+    <body>
+
+        <h3>Write a script that selects all the div nodes that are 
+        directly inside other div elements 
+         Create a function using querySelectorAll() 
+         Create a function using getElementsByTagName()</h3>
+
+        <div>(Parent div)
+            <div>(Nested div)</div>
+            <div>(Nested div)</div>
+            <a href="#"><div>(Div in a anchor)</div></a>
+            <!-- there is a bug if the div is nested in paragraph -->
+        </div>
+
+        <div>(Parent div)</div>
+
+        <div>(Parent div)
+            <div>(Nested div)</div>
+            <div>(Nested div)</div>
+            <div>(Nested div)</div>
+        </div>
+        
+        <script>
+        
+            function getAllNestedDivs () {
+                var allDivs = document.getElementsByTagName('div'),
+                inputs = [];
+
+                for (var i = 0, len = allDivs.length; i < len; i++) {
+                    var div = allDivs[i];
+
+                    if (div.parentNode.nodeName === 'DIV') {
+                        //console.log(div.parentNode.nodeName);
+                        inputs.push(div);
+                    }
+                }
+
+
+                for (var i = 0, len = inputs.length; i < len; i++) {
+                    var input = inputs[i];
+                    input.style.color = 'red';
+                }
+                //console.log(inputs);
+            }
+
+            // getAllNestedDivs();
+
+            function queryAllNestedDivs () {
+                var nestedDiv = document.querySelectorAll('div > div');
+                
+                for (var i = 0, len = nestedDiv.length; i < len; i++) {
+                    var div = nestedDiv[i];
+                    div.innerHTML = 'test';
+                    div.style.color = 'green';
+                }
+            }
+            
+            queryAllNestedDivs();
+        </script>
+        
+    </body>
+</html>

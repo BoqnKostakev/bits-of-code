@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Test page</title>
+
+    </head>
+    <body>
+    
+    <h3>Create a function that gets the value of input 
+        type="text" and prints its value to the console</h3> 
+
+
+    <label for="text">Write some text</label>
+    <input type="text" name="test" id="text" value='some value'>
+    <button id="log">Log to the console</button>
+    <button id="para">Change paragraph</button>
+    <p>Some paragraph</p>
+    
+
+
+    <script src="test.js"></script>
+    <script>
+
+        var input = document.getElementById('text'),
+            para = document.getElementsByTagName('p')[0],
+            btnCon = document.getElementById('log'),
+            btnPara = document.getElementById('para');
+            
+        btnPara.onclick = function() {
+            para.innerHTML = input.value;
+        }  
+        
+
+        btnCon.onclick = function() {
+            console.log(input.value);
+        } 
+    
+    </script>  
+    </body>
+</html>

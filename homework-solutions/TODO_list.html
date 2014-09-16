@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Test page</title>
+        <style>
+            #task-list {
+                list-style: none;
+                display: block;
+            }
+            span {
+                margin-left: 10px;
+            }
+            label {
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+
+    <h1>TODO</h1>
+    <label for="new-task" id="label">Add new task:</label>
+    <input type="text" id="new-task">
+    <button id="add-new-task">Add</button>
+
+    <ul id="task-list"></ul>
+
+    <button id="showHide">Hide</button>
+
+    <script>
+           
+        window.onload = function() {
+
+            function addTask () {
+                var listItem = document.createElement('li'),
+                    deleteBtn = document.createElement('button'),
+                    taskWrap = document.createElement('span'),
+                    task = document.getElementById('new-task'),
+                    taskList = document.getElementById('task-list');
+
+                    deleteBtn.innerHTML = 'Delete';
+                    deleteBtn.className = 'delete-task';
+
+                    taskWrap.innerHTML = task.value;
+
+                    listItem.appendChild(deleteBtn);
+                    listItem.appendChild(taskWrap);
+                    
+                    taskList.appendChild(listItem);
+                    taskList.style.display = 'block';
+
+                    task.value = '';
+            }
+
+            function deleteTask () {
+                var taskList = document.getElementById('task-list');
+
+                taskList.addEventListener('click', function(ev) {
+                    var target = ev.target;
+                    if (target.className === 'delete-task') {
+                        // 'button/li/ul' remove the li which is parent of that button
+                        target.parentNode.parentNode.removeChild(target.parentNode);
+                    }
+                });
+            }   
+            
+            deleteTask();
+
+
+            // TODO: the show/hide btn has to be generated dynamicly
+            function showHideTaskList () {
+                var taskList = document.getElementById('task-list'),
+                    showHideBtn = document.getElementById('showHide');
+                
+                    showHideBtn.addEventListener('click', function() {
+                        if (taskList.style.display === 'block') {
+                            taskList.style.display = 'none';
+                            showHideBtn.innerHTML = 'Show';
+                        } else {
+                            taskList.style.display = 'block';
+                            showHideBtn.innerHTML = 'Hide';
+                        }
+
+                    });
+            }
+
+            showHideTaskList();
+
+            var addTaskBtn = document.getElementById('add-new-task');
+            addTaskBtn.addEventListener('click', function() {
+                addTask();
+            });
+
+        }
+
+    </script>  
+    </body>
+</html>

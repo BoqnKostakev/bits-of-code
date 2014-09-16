@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Test page</title>
+        <style>
+            .dropdown-list-container {
+                width: 200px;
+                margin: 30px auto;
+            }
+            .dropdown-list-options {
+                background: #444;
+                list-style: none;
+                margin: 0;
+                padding: 0;
+            }
+            li {
+                background: #ccc;
+            }
+            .selected {
+                display: block;
+            }
+        </style>
+    </head>
+    <body>
+    <select id="dropdown">
+        <option value="1">One</option>
+        <option value="2">Two</option>
+        <option value="3">Three</option>
+        <option value="4">Four</option>
+    </select> 
+
+    
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+    <script>
+
+    $(document).ready(function() {
+        
+        $.fn.dropdown = function() {
+            var $this = $(this),
+                $dropdownContainer = $('<div />').addClass('dropdown-list-container'),
+                $dropdownOptions = $('<ul />').addClass('dropdown-list-options'),
+                $selectedOption = $('<li />').addClass('selected-option').text('choose'),
+                $childs = $this.children(),
+                $childsLen = $childs.length,
+                optionValues = [],
+                optionText = [];
+
+            $this.hide();
+            $dropdownOptions.append($selectedOption);
+
+            $childs.each(function() {
+                optionValues.push($(this).prop('value'));
+                optionText.push($(this).text());
+            });
+            
+            for (var i = 0; i < $childsLen; i++) {
+                $dropdownOptions.append('<li class="dropdown-list-option" value="' + optionValues[i] + '">' + optionText[i] + '</li>');
+            };
+
+            
+            $dropdownContainer.append($dropdownOptions);
+            $this.after($dropdownContainer);
+
+            $('.dropdown-list-option').hide();
+            $selectedOption.on('click', function() {
+                $('.dropdown-list-option').slideToggle('fast');
+            });
+
+            $('.dropdown-list-option').on('click', function() {
+                $('.dropdown-list-option').slideUp('fast');
+                var value = $(this).attr('value'),
+                    text = $(this).text();
+                $selectedOption.prop('value', value).text(text);
+                $selectedOption.attr('selected', 'selected');
+            });
+
+            
+        }
+
+
+        $('#dropdown').dropdown();
+    });
+
+    </script>
+    </body>
+</html>

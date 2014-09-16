@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Test page</title>
+        <style>
+            
+        </style>
+    </head>
+    <body>
+    <!-- Create a text area and two inputs with type="color"
+         Make the font color of the text area as the value of the 
+        first color input
+         Make the background color of the text area as the 
+        value of the second input -->
+
+        <textarea id="text" cols="30" rows="10"></textarea><br>
+        <input type="color" id="font"> Change font color <br>
+        <input type="color" id="background"> Change background color
+    
+    <script>
+           
+        window.onload = function() {
+            var textarea = document.getElementById('text'),
+                fontColor = document.getElementById('font'),
+                bgColor = document.getElementById('background');
+
+                fontColor.onchange = function() {
+                    textarea.style.color = fontColor.value;
+                }
+
+                bgColor.onchange = function() {
+                    textarea.style.backgroundColor = bgColor.value;
+                }
+        }
+
+    </script>  
+    </body>
+</html>
